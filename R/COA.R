@@ -266,7 +266,8 @@ coa_pdf <-function (erpToken = 'C0426D23-1927-4314-8736-A74B2EF7A039', FBillNo =
       ncount_meta_entry = nrow(meta_entry)
       fields_entry = paste0(meta_entry$FName_ERP_en,collapse = " , ")
       table_entry = meta_entry$FTableName[1]
-      sql_entry = paste0("select  ",fields_entry,"   from  ",table_entry," where FBillNo  = '",FBillNo,"' ")
+      
+      sql_entry = paste0("select  ",fields_entry,"   from  ",table_entry," where FBillNo  = '",FBillNo,"' order by ",fields_entry," ")
       data_entry =  tsda::sql_select2(token = erpToken,sql = sql_entry)
       ncount_entry = nrow(data_entry)
       
